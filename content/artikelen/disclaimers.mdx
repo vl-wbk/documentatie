@@ -1,0 +1,83 @@
+---
+sidebarTitle: 'Disclaimers'
+---
+
+
+# Dynamisch beheer van disclaimers door redacteurs.
+
+Deze documentatie beschrijft het systeem waarmee redacteurs disclaimers kunnen beheren voor woordenboekartikelen in het Vlaams Woordenboek. Disclaimers zijn waarschuwingen of meldingen die worden weergegeven bij bepaalde woorden die als aanstootgevend, gevoelig of controversieel kunnen worden beschouwd.
+
+## Doel en algemene richtlijnen
+
+Het doel van dynamische disclaimers is om per artikel indien nodig een relevante en specifieke waarschuwing te tonen aan gebruikers. Dit helpt om bewustzijn te creëren over de gevoeligheden rond bepaalde woorden en moedigt gebruikers aan om voorzichtig te zijn bij het gebruik ervan. Denk hierbij aan woorden die als kwetsend, discriminerend of ongepast kunnen worden ervaren in bepaalde contexten. Dit systeem draaft bij aan een respectvolle en inclusieve taalomgeving en betrouwbaarheid binnen het Vlaams Woordenboek en beschermt de lezers tegen mogelijke misinterpretaties of ongewenste blootstelling aan gevoelige inhoud.
+
+## Systeemgeprogrammeerde permissies
+
+De bevoegdheden om disclaimers te beheren zijn nauw gekoppeld aan specifieke geprogrammeerde permissies in onze beheerconsole. Een gebruiker kan deze functionaliteit alleen gebruiken als hij of zij de juiste permissies heeft. Hieronder vind je een overzicht van de benodigde permissies:
+
+| Permissie                    | Permissie *(technisch)* | Beschrijving                                                          |
+| :--------------------------- | :---------------------- | :-------------------------------------------------------------------- |
+| **Bekijken**                 | `view:disclaimer`       | De machtiging om een specifieke disclaimer te bekijken                |
+| **Bekijk elke**              | `view-any:disclaimer`   | De machtiging om het overzicht van disclaimers te bekijken            |
+| **Aanmaken**                 | `create:disclaimer`     | De machtiging om een disclaimer aan te maken                          |
+| **Bewerken**                 | `update:disclaimer`     | De machtiging om de gegevens van een disclaimer aan te passen         |
+| **Verwijderen**              | `delete:disclaimer`     | De machtiging om een disclaimer te verwijderen het woordenboek        |
+| **Verwijderen van meerdere** | `delete-any:disclaimer` | De machtiging om meerdere disclaimers te verwijderen met 1 handeling. |
+
+### Technologische verankering
+
+De hierboven genoemde permissies zijn geimplementeerd als discrete rechten binnen het RBAC-framework van het Vlaams Woordenboek. Dit betekent dat gebruikersrollen kunnen worden geconfigureerd om deze permissies toe te kennen of te beperken, afhankelijk van hun verantwoordelijkheden binnen het beheer van het woordenboek.
+
+- **Toewijzing:** Permissies worden toegekend aan rollen, die op hun manier weer aan gebruikers worden toegewezen.
+Dit stelt beheerders in staat om gecontroleerd toegang te verlenen aan de disclaimerbeheerfunctionaliteit.
+
+- **Validatie:** Elke poging om een disclaimer-gerelateerde actie uit te voeren (toevoegen, bewerken, verwijderen, bekijken) wordt gevalideerd tegen de permissies van de gebruiker. Indien de vereiste permissie ontbreekt, wordt de actie geweigerd en krijgt de gebruiker een passende foutmelding.
+
+## Soorten van standaard disclaimers en gebruik
+
+Om consistentie vanaf de start te waarborgen, werken we vanaf de start met een lijst van gestandariseerde disclaimers.
+Hieronder vind je een overzicht van de meest voorkomende soorten disclaimers die redacteurs kunnen toepassen op woordenboekartikelen:
+
+### Medische disclaimer
+
+*Categorie: **Specialistisch***
+
+Deze disclaimer wordt gebruikt voor woorden die betrekking hebben op medische termen, aandoeningen of behandelingen. Het waarschuwt gebruikers dat de informatie niet bedoeld is als medisch advies en dat ze een professionele zorgverlener moeten raadplegen voor medische vragen.
+
+**Voorbeeld:** *migraine, paracetamol, hartaanval*
+
+### Juridische disclaimer
+
+*Categorie: **Specialistich***
+
+Gebruik deze disclaimer bij artikelen die beterekking hebben op juridische termen, wetten of procedures. Het informeert gebruikers dat de inhoud geen juridisch advies is en dat ze een gekwalificeerde jurist moeten raadplegen voor juridische kwesties.
+
+**Voorbeeld:** *auteursrecht, strafbaar feit, vennootschap*.
+
+### Disclaimer voor gevoelige onderwerpen
+
+*Categorie: **Specialistisch***
+
+Gebruik deze disclaimer bij artikelen die maatschappelijk gevoelige onderwerpen behandelen, zoals geweld, discriminatie of psychologishe aandoeningen. Dit waarschuwt de lezer en stelt hen in staat om geinformeerd verder te lezen.
+
+**Voorbeeld:** *depressie, racisme, mishandeling*.
+
+### Disclaimer voor verouderde informatie
+
+*Categorie: **Tijdsgevoelig***
+
+Gebruik deze disclaimer als de informatie sterk verouderd is, maar het artikel *(nog)* niet herschreven/aangepast kan worden of is. Dit signaleert aan de lezer dat de inhoud mogelijk niet meer actueel is.
+
+**Voorbeeld:** *technologische termen, historische gebeurtenissen*.
+
+## Controler en kwaliteitsbewaking
+
+Redacteuren met de juiste permissies kunnen disclaimers toevoegen, bewerken of verwijderen via de beheerconsole van het Vlaams Woordenboek. Het is belangrijk dat disclaimers zorgvuldig worden toegepast om de relevantie en effectiviteit ervan te waarborgen.
+
+---
+
+Dit systeem zorgt voor een flexibele en veilige manier om disclaimers te beheren, waarbij de verantwoordelijkheid deels
+bij de gebruikers met de juiste permissies ligt. Door zorgvoldig te werk te gaan, versterken we samen de betrouwbaarheid
+van ons platform.
+
+Heb je vragen over deze procedures of de beschikbare permissies? Neem dan contact op met het beheerteam van het Vlaams Woordenboek.
