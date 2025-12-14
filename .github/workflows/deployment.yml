@@ -48,7 +48,7 @@ jobs:
 
       # 4. Install dependencies using pnpm
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       # 5. Build and Export with Next.js/Nextra
       - name: Build and Export with Next.js
