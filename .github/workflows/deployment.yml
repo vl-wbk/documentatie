@@ -1,31 +1,26 @@
-# Sample workflow for building and deploying a Next.js site to GitHub Pages
-#
-# To get started with Next.js see: https://nextjs.org/docs/getting-started
-#
-name: Deploy Next.js site to Pages
+name: Deploy Nextra Static Site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Runs on pushes targeting the default branch (e.g., 'main')
   push:
     branches: ["main"]
 
-  # Allows you to run this workflow manually from the Actions tab
+  # Allows you to run this workflow manually
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# Set permissions for deployment
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# Ensure only one deployment runs at a time
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Build job
+  # Build and Export Job
   build:
     runs-on: ubuntu-latest
     steps:
@@ -36,80 +31,40 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          # Optional: Specify the pnpm version you want to use
-          version: 8.x
-          run_install: false
+          version: 8.x # Use a specific version for stability
+          run_install: false # Don't install dependencies yet
 
-      # 2. Detect package manager (Updated to prioritize pnpm)
-      - name: Detect package manager
-        id: detect-package-manager
-        run: |
-          if [ -f "${{ github.workspace }}/pnpm-lock.yaml" ]; then
-            echo "manager=pnpm" >> $GITHUB_OUTPUT
-            echo "command=install" >> $GITHUB_OUTPUT
-            echo "runner=pnpm" >> $GITHUB_OUTPUT
-            exit 0
-          elif [ -f "${{ github.workspace }}/yarn.lock" ]; then
-            echo "manager=yarn" >> $GITHUB_OUTPUT
-            echo "command=install" >> $GITHUB_OUTPUT
-            echo "runner=yarn" >> $GITHUB_OUTPUT
-            exit 0
-          elif [ -f "${{ github.workspace }}/package-lock.json" ]; then
-            echo "manager=npm" >> $GITHUB_OUTPUT
-            echo "command=ci" >> $GITHUB_OUTPUT
-            echo "runner=npm" >> $GITHUB_OUTPUT
-            exit 0
-          else
-            echo "Unable to determine package manager"
-            exit 1
-          fi
-
+      # 2. Setup Node.js Environment
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          # Cache will use the detected manager (e.g., 'pnpm')
-          cache: ${{ steps.detect-package-manager.outputs.manager }}
+          cache: 'pnpm' # Use pnpm cache for fast installations
 
+      # 3. Setup GitHub Pages configuration
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
-          # This step automatically injects 'basePath' and sets 'unoptimized' for static export
+          # Automatically configures Next.js for static export deployment
           static_site_generator: next
 
-      # 3. Restore/Save pnpm Cache (Specific to pnpm for better performance)
-      # This block is *optional* if you use the 'cache' in 'actions/setup-node',
-      # but explicitly setting up the pnpm store cache can be more performant.
-      - name: Get pnpm store directory
-        id: pnpm-cache-dir
-        shell: bash
-        if: ${{ steps.detect-package-manager.outputs.manager == 'pnpm' }}
-        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v4
-        if: ${{ steps.detect-package-manager.outputs.manager == 'pnpm' }}
-        with:
-          path: ${{ steps.pnpm-cache-dir.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
+      # 4. Install dependencies using pnpm
       - name: Install dependencies
-        # Uses the detected manager and command (e.g., 'pnpm install')
-        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+        run: pnpm install --frozen-lockfile
 
-      - name: Build with Next.js
-        # Uses the detected runner (e.g., 'pnpm next build')
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+      # 5. Build and Export with Next.js/Nextra
+      - name: Build and Export with Next.js
+        # The 'next build' command generates the static site into the 'out' directory due to 'output: export'
+        run: pnpm next build
 
+      # 6. Upload the static artifacts
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # The next build exports to the 'out' directory for static sites
+          # Next.js static export output directory
           path: ./out
 
-  # Deployment job (Remains the same)
+  # Deployment job
   deploy:
     environment:
       name: github-pages
