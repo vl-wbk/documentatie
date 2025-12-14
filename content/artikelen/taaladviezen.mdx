@@ -1,0 +1,33 @@
+# Taaladviezen
+
+Op deze documentatie pagina vind je alle benodigde documentatie omtrent de taaladviezen systeem van het Vlaams Woordenboek.
+Omdat we de beschrijving van woordenboekartikelen zo duidelijk en neutraal mogelijk willen houden, hebben we een apart systeem ontwikkeld dat eindredacteurs de mogelijkheid geeft om suggestieve adviezen
+te geven aan vrijwillige redacteurs bij bepaalde woorden tijdens het bewerken van woordenboekartikelen.
+
+Het kan gaan om bijvoorbeeld adviezen over de gepastheid van een woord in bepaalde contexten, of aanbevelingen voor alternatieve woorden die beter aansluiten bij de standaardtaal op een neutrale manier.
+
+## Hoe werkt het?
+
+Voor Eind(redacteurs) veranderd er niets aan de manier waarop ze woordenboekartikelen bewerken. Ze kunnen nog steeds artikelen bewerken zoals ze dat altijd deden. Echter, wanneer ze een artikel bewerken, kunnen ze nu rechtsboven het beschrijvingsveld op een link klikken genaamd 'suggestief taaladvies'. Bij het klikken op deze link opent er een zijpaneel waar de adviezen kunnen raadplegen wanneer er matches zijn met de woorden die vooraf zijn geregistreerd door de eindredacteurs of beheerders. Om vervolgens indien mogelijk deze adviezen toe te passen op de artikel beschrijving.
+
+## Waarom doen we dit?
+
+Ondanks we een disclaimer hebben voor aanstootgevende woorden in het Vlaams Woordenboek, willen we toch een extra laag van begeleiding bieden aan onze vrijwillige redacteurs. Dit systeem helpt hen om bewust te zijn van de gevoeligheden rond bepaalde woorden en moedigt hen aan om zorgvuldiger te zijn bij het kiezen van woorden in hun beschrijvingen. En kunnen ze zo bijdragen aan een respectvolle en inclusieve taalomgeving binnen het Vlaams Woordenboek. Met als doel om de kwaliteit en betrouwbaarheid van onze woordenboekartikelen te verbeteren, zonder dat we de disclaimer onnodig vaak moeten tonen.
+
+## RBAC permissies voor taaladviezen
+
+Om taaladviezen te kunnen beheren, moeten gebruikers de juiste rollen en permissies hebben binnen het RBAC-systeem van het Vlaams Woordenboek. Hieronder vind je een overzicht van de benodigde rollen en hun bijbehorende permissies:
+
+| Functionaliteit               | Permissie                      | Beschrijving                                           |
+|------------------------------|--------------------------------|-------------------------------------------------------|
+| **Overzicht bekijken** | `*` | Alle gebruikers kunnen het overzicht van taaladviezen bekijken. |
+| **Advies bekijken** | `*` | Alle gebruikers kunnen individuele taaladviezen bekijken. |
+| **Advies aanmaken** | `create:moderation-rule` | Alleen gebruikers met deze permissie kunnen nieuwe taaladviezen aanmaken. |
+| **Advies bewerken** | `update:moderation-rule` | Alleen gebruikers met deze permissie kunnen bestaande taaladviezen bewerken. |
+| **Advies verwijderen** | `delete:moderation-rule` | Alleen gebruikers met deze permissie kunnen taaladviezen verwijderen. |
+
+Met deze permissies kunnen we ervoor zorgen dat alleen bevoegde gebruikers taaladviezen kunnen beheren, terwijl alle gebruikers toegang hebben tot de adviezen tijdens het bewerken van woordenboekartikelen.
+
+## Taaladviezen aanmaken en beheren
+
+(todo)
