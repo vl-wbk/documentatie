@@ -42,11 +42,9 @@ jobs:
           cache: 'pnpm' # Use pnpm cache for fast installations
 
       # 3. Setup GitHub Pages configuration
-      - name: Setup Pages
+      - name: Setup GitHub Pages
+        id: setup_pages
         uses: actions/configure-pages@v5
-        with:
-          # Automatically configures Next.js for static export deployment
-          static_site_generator: next
 
       # 4. Install dependencies using pnpm
       - name: Install dependencies
