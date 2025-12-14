@@ -1,4 +1,4 @@
-import { Footer, Layout, Navbar } from 'nextra-theme-docs'
+import { Footer, Layout, Link, Navbar } from 'nextra-theme-docs'
 import { Banner, Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
@@ -24,7 +24,10 @@ const feedback = {
     content: 'Vraag? Geef ons feedback!'
 };
 
-const banner = <Banner storageKey="some-key">Nextra 4.0 is released 🎉</Banner>
+const banner = <Banner storageKey="some-key">
+    We werken momenten aan een nieuw documentatie portaal. Heb u niet gevonden wat u zocht? Probeer dan is te zoeken op ons oude portaal: <a href="https://vl-wbk.github.io/documentatie-portaal/introductie.html">https://vl-wbk.github.io/documentatie-portaal</a>
+</Banner>
+
 const navbar = (
     <Navbar
         logo={<div><b>Vlaams Woordenboek</b> <span className={"italic text-zinc-400"}>documentatie</span></div>}
@@ -51,7 +54,7 @@ export default async function RootLayout({ children }) {
         </Head>
         <body>
         <Layout
-            // banner={banner}
+            banner={banner}
             navbar={navbar}
             pageMap={await getPageMap()}
             docsRepositoryBase="https://github.com/vl-wbk/documentatie-portaal/tree/main/docs"
