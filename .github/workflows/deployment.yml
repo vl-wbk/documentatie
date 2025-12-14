@@ -60,7 +60,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Next.js static export output directory
-          path: ./out
+          path: out
 
   # Deployment job
   deploy:

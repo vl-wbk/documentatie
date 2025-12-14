@@ -4,3 +4,4 @@ public
 next-env.d.ts
 .idea
 node_modules
+out
