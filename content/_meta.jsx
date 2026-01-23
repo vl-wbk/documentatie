@@ -14,5 +14,5 @@ export default {
          title: '(eind)redacteurs',
     },
 
-    'richtlijnen': 'Redactie richtlijnen',
+    'richtlijnen': 'Redactie van artikelen',
 }
