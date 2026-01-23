@@ -3,15 +3,16 @@ export default {
 
     '##': {
         type: 'separator',
-        title: 'Gebruikers documentatie' // Title is optional
+        title: 'gebruikers' // Title is optional
     },
 
     'gebruikers': '',
     'artikelen': '',
-    'richtlijnen': '',
 
-    '####': {
-        type: 'separator',
-        title: 'Technische documentatie' // Title is optional
+    '###':  {
+         type: 'separator',
+         title: '(eind)redacteurs',
     },
+
+    'richtlijnen': 'Redactie van artikelen',
 }
